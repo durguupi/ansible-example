@@ -1,0 +1,12 @@
+---
+- name: Playbook to run on localhost and test the output
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Execute command ls to check whether its working or not
+      shell: "ls -ltrh"
+      register: output
+
+    - name: Getthing the output on screen with the help of debug module
+      debug:
+        var: output.stdout_lines
