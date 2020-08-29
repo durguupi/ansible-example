@@ -7,6 +7,14 @@
       shell: "ls -ltrh"
       register: output
 
-    - name: Getthing the output on screen with the help of debug module
+    - name: Execute command ls to check whether its working or not
+      shell: "pwd"
+      register: pwd_out
+
+    - name: Gathering the output on screen with the help of debug module
       debug:
         var: output.stdout_lines
+
+    - name: Gathering the output on screen with the help of debug module
+      debug:
+        msg: The present working directory is "{{ pwd_out.stdout }}"
