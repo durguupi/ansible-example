@@ -10,6 +10,8 @@ pipeline {
     stage('Build Stage ') {
       steps {
         echo 'Building the pipeline'
+        sleep 20
+        echo 'Tested the Sleep condition'
       }
     }
 
