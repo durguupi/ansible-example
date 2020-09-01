@@ -46,6 +46,7 @@ pipeline {
     stage('Deploy Stage') {
       steps {
         sh '''docker --version
+newgrp docker
 docker ps
 echo "Docker is installed Successfully" '''
       }
