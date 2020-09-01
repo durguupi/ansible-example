@@ -37,10 +37,17 @@ pipeline {
       }
     }
 
+    stage('Docker Install ') {
+      steps {
+        ansiblePlaybook(colorized: true, playbook: 'dockerinstall_play.yml', become: true)
+      }
+    }
+
     stage('Deploy Stage') {
       steps {
-        sh '''pwd
-echo "Everything is working as expected"'''
+        sh '''docker --version
+docker ps
+echo "Docker is installed Successfully" '''
       }
     }
 
