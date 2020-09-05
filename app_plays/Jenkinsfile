@@ -1,0 +1,30 @@
+pipeline{
+    agent any
+    stages{
+        stage('Git checkout'){
+            steps{
+            git changelog: false, poll: false, url: 'https://github.com/durguupi/ansible-example.git'   
+            }
+        }
+        stage('Building stage'){
+            steps{
+            sh label: '', script: 'echo "Building the pipeline to deploy ansible-play on remote hosts"'
+            }
+        }
+        stage('Playbook Invoking'){
+            steps{
+               dir('app_plays/') {
+                   ansiblePlaybook become: true, colorized: true, disableHostKeyChecking: true, installation: 'ansible', inventory: '/home/ansible_master/inventory', playbook: 'mariadb_play.yml'
+             }
+            }
+        }
+        stage('Paybook Finished'){
+            steps{
+               dir('basic-one_node/') {
+                sh label: '', script: '''pwd
+                echo "Playbook executed successfully. This is last stage"'''
+            }
+            }
+        }
+    }
+}
