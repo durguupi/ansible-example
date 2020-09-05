@@ -13,4 +13,4 @@
 
     - name: Debug the output_python of the script using var
       debug:
-        var: output_python
+        var: output_python.stdoutlines
