@@ -1,0 +1,16 @@
+---
+- name: Playbook for getting the system related information using Python
+  hosts: app
+  tasks:
+    - name: execute Python script from ansible controller 
+      script: /home/ansible_master/test.py
+      register: output_python
+      args:
+        executable: python3
+    - name: Debug the output_python of the script
+      debug:
+        msg: "{{ output_python.stdout.split('\r') }} "
+
+    - name: Debug the output_python of the script using var
+      debug:
+        var: output_python
